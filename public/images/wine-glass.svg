@@ -1,0 +1,11 @@
+<svg width="400" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="600" fill="#2C1810"/>
+  <path d="M 200 150 L 180 250 L 180 400 L 160 400 L 160 420 L 240 420 L 240 400 L 220 400 L 220 250 Z" fill="#D4AF37" opacity="0.6"/>
+  <text x="200" y="500" font-family="Arial, sans-serif" font-size="24" fill="#FFFFFF" text-anchor="middle" font-weight="bold">
+    Wine Glass
+  </text>
+  <text x="200" y="540" font-family="Arial, sans-serif" font-size="16" fill="#D4AF37" text-anchor="middle">
+    400 x 600
+  </text>
+</svg>
+

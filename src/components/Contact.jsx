@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import theme from '../theme';
-import { FaMapMarkerAlt, FaEnvelope } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaEnvelope, FaPhone } from 'react-icons/fa';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -88,6 +88,35 @@ const Contact = () => {
                     [Ihre Adresse]<br />
                     [Ihre Stadt]
                   </p>
+                </div>
+              </div>
+
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: theme.spacing.md,
+                marginBottom: theme.spacing.lg,
+              }}>
+                <FaPhone style={{
+                  fontSize: theme.fontSizes.large,
+                  color: theme.colors.gold,
+                }} />
+                <div>
+                  <h3 style={{
+                    fontFamily: theme.fonts.primary,
+                    fontSize: theme.fontSizes.large,
+                    marginBottom: theme.spacing.sm,
+                  }}>
+                    Telefon
+                  </h3>
+                  <a href="tel:+4912345678900" style={{
+                    fontFamily: theme.fonts.secondary,
+                    fontSize: theme.fontSizes.base,
+                    color: theme.colors.gold,
+                    textDecoration: 'none',
+                  }}>
+                    +49 123 456 789 00
+                  </a>
                 </div>
               </div>
 

@@ -1,0 +1,11 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#654321"/>
+  <circle cx="400" cy="300" r="100" fill="#D4AF37" opacity="0.3"/>
+  <text x="400" y="300" font-family="Arial, sans-serif" font-size="32" fill="#FFFFFF" text-anchor="middle" font-weight="bold">
+    Restaurant Interior
+  </text>
+  <text x="400" y="350" font-family="Arial, sans-serif" font-size="18" fill="#D4AF37" text-anchor="middle">
+    800 x 600
+  </text>
+</svg>
+
