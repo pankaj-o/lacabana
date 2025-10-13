@@ -6,7 +6,10 @@ const ComingSoon = () => {
   return (
     <div style={{
       minHeight: '100vh',
-      background: `linear-gradient(${theme.colors.overlay}, ${theme.colors.overlay}), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070') center/cover fixed`,
+      background: `linear-gradient(${theme.colors.overlay}, ${theme.colors.overlay}), url('/images/ComingSoon.png') center/cover`,
+      backgroundAttachment: 'scroll',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center center',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
@@ -14,7 +17,7 @@ const ComingSoon = () => {
       color: theme.colors.textWhite,
       padding: theme.spacing.xl,
       position: 'relative',
-    }}>
+    }} className="coming-soon-container">
       {/* Background Pattern */}
       <div style={{
         position: 'absolute',
@@ -23,14 +26,15 @@ const ComingSoon = () => {
         right: 0,
         bottom: 0,
         background: `radial-gradient(circle at 20% 80%, ${theme.colors.primary}20 0%, transparent 50%), radial-gradient(circle at 80% 20%, ${theme.colors.secondary}20 0%, transparent 50%)`,
-      }}></div>
+      }} className="background-pattern"></div>
 
       <div style={{
         maxWidth: '1000px',
         textAlign: 'center',
         position: 'relative',
         zIndex: 2,
-      }}>
+        width: '100%',
+      }} className="content-container">
         {/* Logo Section */}
         <div style={{
           marginBottom: theme.spacing.xxxl,
@@ -395,15 +399,27 @@ const ComingSoon = () => {
               marginBottom: theme.spacing.md,
               borderRadius: '2px',
             }}></div>
-            <p style={{
-              fontFamily: theme.fonts.secondary,
-              fontSize: theme.fontSizes.medium,
-              fontWeight: '600',
-              lineHeight: '1.8',
-            }}>
-              Oberneulander Landstraße 103<br />
-              28355 Bremen
-            </p>
+            <a 
+              href="https://www.google.com/maps/search/?api=1&query=Oberneulander+Landstraße+103,+28355+Bremen" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{
+                textDecoration: 'none',
+              }}
+            >
+              <p style={{
+                fontFamily: theme.fonts.secondary,
+                fontSize: theme.fontSizes.medium,
+                fontWeight: '600',
+                lineHeight: '1.8',
+                color: theme.colors.darkBackground,
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+              }} className="address-link">
+                Oberneulander Landstraße 103<br />
+                28355 Bremen
+              </p>
+            </a>
           </div>
 
           {/* Concept */}
@@ -695,28 +711,171 @@ const ComingSoon = () => {
           transform: scale(1.05);
           text-shadow: 3px 3px 6px rgba(0,0,0,0.7), 0 0 20px rgba(212, 175, 55, 0.6);
         }
+        
+        .address-link:hover {
+          color: ${theme.colors.primary} !important;
+          transform: scale(1.05);
+          text-decoration: underline !important;
+        }
 
         @media (max-width: ${theme.breakpoints.tablet}) {
+          .coming-soon-container {
+            padding: ${theme.spacing.md} !important;
+            background-attachment: scroll !important;
+            background-size: cover !important;
+          }
+          
+          .background-pattern {
+            opacity: 0.3;
+          }
+          
+          .content-container {
+            padding: 0 ${theme.spacing.sm} !important;
+          }
+          
+          .logo-section {
+            margin-bottom: ${theme.spacing.xl} !important;
+          }
+          
           h1 {
-            font-size: ${theme.fontSizes.xxlarge} !important;
-          }
-          h2 {
             font-size: ${theme.fontSizes.xlarge} !important;
+            letter-spacing: 2px !important;
           }
-          h3 {
+          
+          h2 {
             font-size: ${theme.fontSizes.large} !important;
+            letter-spacing: 3px !important;
           }
           
-          .price-tag {
-            transform: rotate(0deg) !important;
+          h3 {
+            font-size: ${theme.fontSizes.medium} !important;
           }
           
-          .info-card:hover {
-            transform: none;
+          h4 {
+            font-size: ${theme.fontSizes.base} !important;
+          }
+          
+          /* Reduce star decorations on mobile */
+          .logo-section > div:first-child {
+            display: none !important;
+          }
+          
+          /* Simplify opening date card */
+          .opening-date-card {
+            padding: ${theme.spacing.lg} !important;
+            border-width: 2px !important;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3), 0 0 0 2px ${theme.colors.gold} !important;
+            animation: fadeInUp 1s ease-out 0.3s both !important;
+          }
+          
+          /* Hide decorative corners on mobile */
+          .opening-date-card > div[style*="position: absolute"] {
+            display: none !important;
+          }
+          
+          /* Simplify offer card */
+          .offer-card {
+            padding: ${theme.spacing.lg} !important;
+            border-width: 2px !important;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4) !important;
+            animation: fadeInUp 1s ease-out 0.4s both !important;
           }
           
           .offer-card:hover {
-            transform: none;
+            transform: none !important;
+          }
+          
+          /* Simplify price tag */
+          .price-tag {
+            transform: rotate(0deg) !important;
+            padding: ${theme.spacing.md} ${theme.spacing.lg} !important;
+            animation: none !important;
+          }
+          
+          .price-tag:hover {
+            transform: scale(1) !important;
+          }
+          
+          .price-tag > div {
+            font-size: ${theme.fontSizes.xxlarge} !important;
+          }
+          
+          /* Simplify info cards */
+          .info-card {
+            padding: ${theme.spacing.md} !important;
+            border-width: 2px !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+            animation: fadeInUp 0.8s ease-out both !important;
+          }
+          
+          .info-card:hover {
+            transform: none !important;
+          }
+          
+          .info-card svg {
+            font-size: 2rem !important;
+          }
+          
+          /* Hide decorative circles in info cards */
+          .info-card > div[style*="position: absolute"] {
+            display: none !important;
+          }
+          
+          /* Simplify contact card */
+          .contact-card {
+            padding: ${theme.spacing.lg} !important;
+            border-width: 2px !important;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4) !important;
+            animation: fadeInUp 1s ease-out 0.6s both !important;
+          }
+          
+          .contact-card > div > div:first-child {
+            padding: ${theme.spacing.sm} !important;
+            margin-bottom: ${theme.spacing.md} !important;
+          }
+          
+          .contact-card svg {
+            font-size: 1.5rem !important;
+          }
+          
+          .email-link {
+            font-size: ${theme.fontSizes.large} !important;
+          }
+          
+          .reservation-badge {
+            font-size: ${theme.fontSizes.small} !important;
+            padding: ${theme.spacing.sm} ${theme.spacing.md} !important;
+            letter-spacing: 1px !important;
+            animation: none !important;
+            word-break: break-word !important;
+          }
+          
+          /* Disable heavy animations on mobile */
+          .star-icon,
+          .pulse-text,
+          .logo-section h1 {
+            animation: fadeInUp 1s ease-out !important;
+          }
+          
+          /* Adjust grid for mobile */
+          div[style*="grid-template-columns"] {
+            gap: ${theme.spacing.md} !important;
+            margin-bottom: ${theme.spacing.xl} !important;
+          }
+          
+          /* Reduce section spacing */
+          .opening-date-card,
+          .offer-card {
+            margin-bottom: ${theme.spacing.xl} !important;
+          }
+          
+          /* Reduce decorative line width */
+          div[style*="width: '150px'"] {
+            width: 100px !important;
+          }
+          
+          div[style*="width: '100px'"] {
+            width: 60px !important;
           }
         }
       `}</style>
