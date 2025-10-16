@@ -6,6 +6,7 @@ export default defineConfig({
   server: {
     host: true, // This will make the server accessible from other devices on your network
     port: 5173, // Default Vite port
+    historyApiFallback: true, // Enable client-side routing
   },
 })
 
