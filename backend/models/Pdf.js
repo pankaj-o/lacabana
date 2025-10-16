@@ -12,11 +12,13 @@ const pdfSchema = new mongoose.Schema({
   },
   filename: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   originalName: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   fileId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -38,6 +40,8 @@ const pdfSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
+}, {
+  timestamps: true // This adds createdAt and updatedAt automatically
 });
 
 module.exports = mongoose.model('Pdf', pdfSchema);

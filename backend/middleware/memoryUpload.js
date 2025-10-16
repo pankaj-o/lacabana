@@ -24,10 +24,30 @@ const upload = multer({
 
 // Function to upload file to GridFS
 const uploadToGridFS = async (file, metadata) => {
+  // Wait for MongoDB connection to be ready
+  const maxWaitTime = 10000; // 10 seconds
+  const startTime = Date.now();
+  
+  while (mongoose.connection.readyState !== 1 && (Date.now() - startTime) < maxWaitTime) {
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+  
+  if (mongoose.connection.readyState !== 1) {
+    throw new Error('MongoDB connection not established after waiting');
+  }
+  
   const db = mongoose.connection.db;
+  if (!db) {
+    throw new Error('Database connection not available');
+  }
+  
   const bucket = new GridFSBucket(db, { bucketName: 'pdfs' });
   
-  const filename = `${Date.now()}-${Math.round(Math.random() * 1E9)}-${file.originalname}`;
+  // Use original filename for GridFS storage, but ensure uniqueness
+  const timestamp = Date.now();
+  const fileExtension = file.originalname.split('.').pop();
+  const baseName = file.originalname.replace(/\.[^/.]+$/, ""); // Remove extension
+  const filename = `${baseName}-${timestamp}.${fileExtension}`;
   
   const uploadStream = bucket.openUploadStream(filename, {
     metadata: {

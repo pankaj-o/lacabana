@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const multer = require('multer');
 const { initGridFS } = require('./utils/gridfs');
 require('dotenv').config({ path: './config.env' });
 
@@ -25,27 +26,32 @@ let isConnected = false;
 
 const connectDB = async () => {
   if (isConnected) {
+    console.log('MongoDB already connected');
     return;
   }
 
   try {
+    console.log('Attempting to connect to MongoDB...');
+    console.log('MongoDB URI:', process.env.MONGODB_URI);
+    
     await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/lacabana', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
       maxPoolSize: 10, // Maintain up to 10 socket connections
       serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
       socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
-      bufferCommands: false, // Disable mongoose buffering
-      bufferMaxEntries: 0 // Disable mongoose buffering
     });
     
     isConnected = true;
-    console.log('Connected to MongoDB');
+    console.log('✅ Connected to MongoDB successfully');
+    console.log('Connection state:', mongoose.connection.readyState);
+    console.log('Database available:', !!mongoose.connection.db);
     
     // Initialize GridFS after successful connection
-    initGridFS();
+    setTimeout(() => {
+      console.log('Initializing GridFS...');
+      initGridFS();
+    }, 1000); // Small delay to ensure connection is fully established
   } catch (error) {
-    console.error('MongoDB connection error:', error);
+    console.error('❌ MongoDB connection error:', error);
     isConnected = false;
   }
 };

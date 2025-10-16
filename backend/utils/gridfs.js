@@ -5,8 +5,13 @@ let bucket;
 
 // Initialize GridFS
 const initGridFS = () => {
-  const db = mongoose.connection.db;
-  bucket = new GridFSBucket(db, { bucketName: 'pdfs' });
+  if (mongoose.connection.readyState === 1) {
+    const db = mongoose.connection.db;
+    bucket = new GridFSBucket(db, { bucketName: 'pdfs' });
+    console.log('GridFS initialized successfully');
+  } else {
+    console.log('MongoDB not connected, GridFS initialization skipped');
+  }
 };
 
 // Get GridFS bucket
