@@ -195,6 +195,69 @@ const ComingSoon = () => {
           </p>
         </div>
 
+        {/* Reserve Table Button */}
+        <div style={{
+          marginBottom: theme.spacing.xxxl,
+          textAlign: 'center',
+        }}>
+          <button style={{
+            background: `linear-gradient(135deg, #B8860B 0%, ${theme.colors.gold} 30%, #FFD700 70%, #DAA520 100%)`,
+            color: theme.colors.darkBackground,
+            border: `4px solid #8B6914`,
+            padding: `${theme.spacing.xl} ${theme.spacing.xxxl}`,
+            fontSize: theme.fontSizes.xlarge,
+            fontWeight: '800',
+            fontFamily: theme.fonts.primary,
+            letterSpacing: '3px',
+            textTransform: 'uppercase',
+            borderRadius: '20px',
+            cursor: 'pointer',
+            boxShadow: '0 15px 40px rgba(0,0,0,0.5), inset 0 3px 6px rgba(255,255,255,0.4), inset 0 -2px 4px rgba(0,0,0,0.2)',
+            transition: 'all 0.4s ease',
+            position: 'relative',
+            overflow: 'hidden',
+            minWidth: '320px',
+            textShadow: '3px 3px 0px rgba(255,255,255,0.4), 0 0 10px rgba(0,0,0,0.3)',
+            transform: 'perspective(1000px) rotateX(5deg)',
+          }} 
+          className="reserve-button"
+          onClick={() => window.open('https://services.gastronovi.com/restaurants/128454/reservierung/widget#1', '_blank')}
+          onMouseEnter={(e) => {
+            e.target.style.transform = 'perspective(1000px) rotateX(0deg) translateY(-8px) scale(1.08)';
+            e.target.style.boxShadow = '0 20px 50px rgba(0,0,0,0.6), inset 0 4px 8px rgba(255,255,255,0.5), inset 0 -3px 6px rgba(0,0,0,0.3)';
+            e.target.style.filter = 'brightness(1.1)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.transform = 'perspective(1000px) rotateX(5deg) translateY(0) scale(1)';
+            e.target.style.boxShadow = '0 15px 40px rgba(0,0,0,0.5), inset 0 3px 6px rgba(255,255,255,0.4), inset 0 -2px 4px rgba(0,0,0,0.2)';
+            e.target.style.filter = 'brightness(1)';
+          }}>
+            {/* Decorative background pattern */}
+            <div style={{
+              position: 'absolute',
+              top: '-50px',
+              right: '-50px',
+              width: '100px',
+              height: '100px',
+              background: 'rgba(255,255,255,0.1)',
+              borderRadius: '50%',
+            }}></div>
+            <div style={{
+              position: 'absolute',
+              bottom: '-30px',
+              left: '-30px',
+              width: '60px',
+              height: '60px',
+              background: 'rgba(0,0,0,0.1)',
+              borderRadius: '50%',
+            }}></div>
+            
+            <span style={{ position: 'relative', zIndex: 1 }}>
+              🍽️ Tisch reservieren
+            </span>
+          </button>
+        </div>
+
         {/* Special Opening Offer */}
         <div style={{
           background: `linear-gradient(135deg, ${theme.colors.primary} 0%, #6D4C41 100%)`,
@@ -261,13 +324,14 @@ const ComingSoon = () => {
               inklusive Tagessuppe & Dessert
             </p>
             <div style={{
-              background: `linear-gradient(135deg, ${theme.colors.gold} 0%, #F4E4C1 100%)`,
+              background: `linear-gradient(135deg, #8B7355 0%, #A68B5B 50%, #8B7355 100%)`,
               display: 'inline-block',
               padding: `${theme.spacing.lg} ${theme.spacing.xxl}`,
-              borderRadius: '12px',
+              borderRadius: '8px',
               marginBottom: theme.spacing.lg,
-              boxShadow: '0 8px 25px rgba(0,0,0,0.4)',
-              transform: 'rotate(-2deg)',
+              boxShadow: '0 8px 25px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.2)',
+              transform: 'rotate(-1deg)',
+              border: `2px solid #6B5B47`,
             }} className="price-tag">
               <div style={{
                 fontSize: theme.fontSizes.huge,
@@ -706,6 +770,19 @@ const ComingSoon = () => {
           animation: pulse 2.5s ease-in-out infinite;
         }
         
+        .reserve-button {
+          animation: fadeInUp 1s ease-out 0.6s both, buttonPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes buttonPulse {
+          0%, 100% {
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5), inset 0 3px 6px rgba(255,255,255,0.4), inset 0 -2px 4px rgba(0,0,0,0.2), 0 0 0 0 rgba(212, 175, 55, 0.4);
+          }
+          50% {
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5), inset 0 3px 6px rgba(255,255,255,0.4), inset 0 -2px 4px rgba(0,0,0,0.2), 0 0 0 10px rgba(212, 175, 55, 0.1);
+          }
+        }
+        
         .email-link:hover {
           color: ${theme.colors.textWhite} !important;
           transform: scale(1.05);
@@ -848,6 +925,21 @@ const ComingSoon = () => {
             letter-spacing: 1px !important;
             animation: none !important;
             word-break: break-word !important;
+          }
+          
+          .reserve-button {
+            padding: ${theme.spacing.lg} ${theme.spacing.xl} !important;
+            font-size: ${theme.fontSizes.large} !important;
+            min-width: 280px !important;
+            letter-spacing: 2px !important;
+            animation: fadeInUp 1s ease-out 0.6s both, buttonPulse 3s ease-in-out infinite !important;
+            transform: perspective(1000px) rotateX(2deg) !important;
+            border-width: 3px !important;
+          }
+          
+          .reserve-button:hover {
+            transform: perspective(1000px) rotateX(0deg) translateY(-5px) scale(1.05) !important;
+            filter: brightness(1.1) !important;
           }
           
           /* Disable heavy animations on mobile */
