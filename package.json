@@ -1,12 +1,17 @@
 {
-  "name": "la-cabana",
+  "name": "lacabana-fullstack",
   "version": "1.0.0",
-  "description": "Wine bar website inspired by Bar rique",
+  "description": "La Cabana Restaurant Full Stack Application",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "vite",
+    "dev:backend": "cd backend && npm run dev",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start:backend": "cd backend && npm start",
+    "serverless:offline": "serverless offline",
+    "serverless:deploy": "serverless deploy"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -15,7 +20,9 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.0",
-    "vite": "^5.0.0"
+    "vite": "^5.0.0",
+    "concurrently": "^8.2.2",
+    "serverless": "^3.38.0",
+    "serverless-offline": "^13.3.0"
   }
 }
-

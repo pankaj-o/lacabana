@@ -5,7 +5,9 @@ import { FaClock, FaCalendarAlt, FaMapMarkerAlt, FaUtensils, FaStar, FaPhone, Fa
 const ComingSoon = () => {
   const [menuPdf, setMenuPdf] = useState(null);
   const [loading, setLoading] = useState(false);
-  const API_BASE = 'http://localhost:5000/api';
+  const API_BASE = process.env.NODE_ENV === 'production' 
+    ? 'https://your-api-gateway-url.amazonaws.com/dev/api' 
+    : 'http://localhost:5000/api';
 
   // Fetch menu PDF on component mount
   useEffect(() => {

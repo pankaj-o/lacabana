@@ -8,7 +8,9 @@ const SimpleAdmin = () => {
   const [uploading, setUploading] = useState({ menu: false, drinks: false });
   const [uploadedFiles, setUploadedFiles] = useState({ menu: null, drinks: null });
 
-  const API_BASE = 'http://localhost:5000/api';
+  const API_BASE = process.env.NODE_ENV === 'production' 
+    ? 'https://your-api-gateway-url.amazonaws.com/dev/api' 
+    : 'http://localhost:5000/api';
 
   // Fetch existing files on component mount
   useEffect(() => {
